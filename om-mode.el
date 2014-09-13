@@ -1,15 +1,20 @@
-;;; om-mode.el --- Insert om component with full lifecycle, and jump
-;;; easily between the states.  Also, using abbrev-epand to expand
-;;; "om" into a skeleton.
+;;; om-mode.el --- Insert Om component template with life cycle.
 
 ;; Copyright (C) 2014 Daniel Szmulewicz
 ;; <http://about.me/daniel.szmulewicz>
 
 ;; Author: Daniel Szmulewicz <daniel.szmulewicz@gmail.com>
-
-;; Version: 0.8
+;; Keywords: clojurescript
+;; Created: 14th September 2014
+;; Version: 0.0.20140914
 
 ;;; Commentary:
+
+;; Insert Om component template with life cycle and jump easily
+;; between the relevant positions.  Also, using abbrev to expand the
+;; template by typing a user-configurable abbrev, "om" being the
+;; default.
+
 
 ;;; Legal:
 ;;

@@ -25,7 +25,7 @@ Please make sure you have Marmalade or MELPA in your package archives.
 
 ***  Manual
 
-Just put om-mode.el anywhere on your load path (or load the file manually). M-x om-mode will toggle it on and off.
+Just put *om-mode.el* anywhere on your load path (or load the file manually). *M-x om-mode* will toggle it on and off.
 
 ** Usage
 
@@ -33,6 +33,8 @@ Invoke the template with *M-x insert-om-template*.
 Alternatively, type “om” and automatic expansion will occur. 
 For this to work, either turn on *abbrev-mode* in the buffer, or put *(setq-default abbrev-mode t)* in your init file.
 After template insertion, *next-line* and *previous-line* will jump to places of interest in the template. When you’ve finished editing the template, invoke *M-x exit-om-edit* to reclaim the usual bindings associated with *next-line* and *previous-line* (*C-n* and *C-p* typically).
+
+Type *M-x customize-group RET om-mode* to change the abbreviation to expand the template. The default is “om”.
 
 ** Limitations
 

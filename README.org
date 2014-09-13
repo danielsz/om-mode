@@ -40,6 +40,12 @@ Type *M-x customize-group RET om-mode* to change the abbreviation to expand the 
 
 - This minor mode makes sense only for Clojurescript, however there doesn’t seem to be a hook specific to Clojurescript, so it uses the *clojure-mode-hook*. This is not ideal. There is an open [[https://github.com/clojure-emacs/cider/issues/798][issue]] on Cider’s github.
 
+** Contributing
 
+I will gladly accept pull requests with enhancements, features, refactorings, alternate implementations.
+
+1. Fork the repository.
+2. Make changes.
+3. Submit a pull request.
 
 

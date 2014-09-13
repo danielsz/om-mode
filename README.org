@@ -1,0 +1,37 @@
+* Om-mode
+
+Om-mode is a minor mode that provides the following:
+
+- Insert a template for an Om component.
+- The template include all the Om life cycle protocols.
+- Jump back and forth between positions in the template.
+- User-configurable abbrev that will autoamatically expand the template.
+
+** Installation
+
+*** MELPA
+
+#+BEGIN_SRC emacs-lisp
+M-x package-install RET om-mode
+#+END_SRC
+
+Please make sure you have Marmalade or MELPA in your package archives.
+
+#+BEGIN_SRC emacs-lisp
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+#+END_SRC
+
+***  Manual
+
+Just put om-mode.el anywhere on your load path (or load the file manually). M-x om-mode will toggle it on and off.
+
+** Usage
+
+Invoke the template with *M-x insert-om-template*.
+Alternatively, type “om” and automatic expansion will occur. 
+For this to work, either turn on *abbrev-mode* in the buffer, or put *(setq-default abbrev-mode t)* in your init file.
+After template insertion, *next-line* and *previous-line* will jump to places of interest in the template. When you’ve finished editing the template, invoke *M-x exit-om-edit* to reclaim the usual binding for *next-line* and *previous-line*.
+
+

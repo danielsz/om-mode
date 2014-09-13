@@ -6,7 +6,7 @@
 ;; Author: Daniel Szmulewicz <daniel.szmulewicz@gmail.com>
 ;; Keywords: clojurescript
 ;; Created: 14th September 2014
-;; Version: 0.0.20140914
+;; Version: 0.1.20140914
 
 ;;; Commentary:
 
@@ -92,12 +92,11 @@
 (defvar *skeleton-markers* nil
          "Markers for locations saved in skeleton-positions.")
 
-
 (defgroup om-mode nil
   "Customization group for `om-mode'."
 	:group 'convenience)
 
-(defconst om-mode-keymap (make-sparse-keymap) "Keymap used in palimpsest mode.")
+(defconst om-mode-keymap (make-sparse-keymap) "Keymap used in om mode.")
 
 (defcustom om-expand-abbrev "om"
   "This is the abbrev to expand an Om component."
@@ -160,10 +159,7 @@ REVERSE - Jump to previous position in skeleton"
 
 ;;;###autoload
 (define-minor-mode om-mode
-  "Toggle om mode.
-Interactively with no argument, this command toggles the mode.
-to show buffer size and position in mode-line.  You can customize
-this minor mode, see option `om-mode'.."
+  "Toggle om mode."
   :init-value nil
   ;; The indicator for the mode line.
   :lighter " Om"
@@ -172,6 +168,7 @@ this minor mode, see option `om-mode'.."
   :global nil
   :group 'om-mode)
 
+;;;###autoload
 (add-hook 'clojure-mode-hook 'om-mode)
 
 (provide 'om-mode)

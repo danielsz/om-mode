@@ -166,7 +166,7 @@ REVERSE - Jump to previous position in skeleton"
   ;; The indicator for the mode line.
   :lighter " OmInsert"
   ;; The minor mode bindings.
-  :keymap om-mode-map
+  :keymap om-insert-mode-map
   :global nil
   :group 'om-mode
   (if om-insert-mode

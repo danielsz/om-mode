@@ -55,3 +55,6 @@ I will gladly accept pull requests with enhancements, features, refactorings, al
 3. Submit a pull request.
 
 
+** Credits
+
+I wish to thank Steve Purcell (@purcell) for his guidance and expertise.

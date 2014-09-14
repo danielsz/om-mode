@@ -6,7 +6,7 @@
 ;; Author: Daniel Szmulewicz <daniel.szmulewicz@gmail.com>
 ;; Keywords: clojurescript
 ;; Created: 14th September 2014
-;; Version: 0.3.20140914
+;; Version: 0.5.20140914
 
 ;;; Commentary:
 
@@ -43,6 +43,7 @@
 
 (require 'skeleton)
 
+;;;###autoload
 (define-skeleton om-insert-template
   "Om component skeleton"
   "Name of component: "
@@ -159,14 +160,13 @@ REVERSE - Jump to previous position in skeleton"
 (unless noninteractive
   (om-install-abbrevs))
 
-;;;###autoload
 (define-minor-mode om-insert-mode
   "Toggle om mode."
   :init-value nil
   ;; The indicator for the mode line.
+  :keymap om-insert-mode-map
   :lighter " OmInsert"
   ;; The minor mode bindings.
-  :keymap om-insert-mode-map
   :global nil
   :group 'om-mode
   (if om-insert-mode
@@ -174,8 +174,6 @@ REVERSE - Jump to previous position in skeleton"
         (om-make-markers)
         (message "Use C-n and C-p to move between Om fields, C-c C-c to finish."))
     (message "Om insertion stopped.")))
-
-
 
 (provide 'om-mode)
 ;;; om-mode.el ends here

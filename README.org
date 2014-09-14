@@ -57,4 +57,4 @@ I will gladly accept pull requests with enhancements, features, refactorings, al
 
 ** Credits
 
-I wish to thank Steve Purcell (@purcell) for his guidance and expertise.
+I wish to thank Steve Purcell for his guidance and expertise.

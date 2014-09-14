@@ -42,7 +42,7 @@
 
 (require 'skeleton)
 
-(define-skeleton insert-om-template
+(define-skeleton om-insert-template
   "Om component skeleton"
   "Name of component: "
   "(defn " str \n
@@ -151,10 +151,10 @@ REVERSE - Jump to previous position in skeleton"
   (if (and (boundp 'clojure-mode-abbrev-table)
  	   (not (equal clojure-mode-abbrev-table (make-abbrev-table))))
       (let ((save-abbrevs 'silently))
-	(define-abbrev clojure-mode-abbrev-table om-expand-abbrev "" 'insert-om-template)
+	(define-abbrev clojure-mode-abbrev-table om-expand-abbrev "" 'om-insert-template)
 	(message "Clojure abbrevs already exists, om abbrev added to it"))
     (let ((save-abbrevs nil))
-      (define-abbrev-table 'clojure-mode-abbrev-table om-expand-abbrev "" 'insert-om-template)
+      (define-abbrev-table 'clojure-mode-abbrev-table om-expand-abbrev "" 'om-insert-template)
       (message "Clojure abbrevs loaded."))))
 
 (unless noninteractive

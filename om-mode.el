@@ -93,7 +93,7 @@
 
 (defgroup om-mode nil
   "Customization group for `om-mode'."
-	:group 'convenience)
+  :group 'convenience)
 
 (defconst om-mode-keymap (make-sparse-keymap) "Keymap used in om mode.")
 

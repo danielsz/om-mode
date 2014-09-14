@@ -15,6 +15,7 @@
 ;; template by typing a user-configurable abbrev, "om" being the
 ;; default.
 
+;; Just call "om-insert-template" to start.
 
 ;;; Legal:
 ;;
@@ -83,7 +84,8 @@
   '(indent-according-to-mode)
   \n > @ - ")"
   '(indent-according-to-mode)
-  resume: "))")
+  resume: "))"
+  '(om-insert-mode 1))
 
 (define-skeleton init-state
   "init state"
@@ -95,7 +97,13 @@
   "Customization group for `om-mode'."
   :group 'convenience)
 
-(defconst om-mode-keymap (make-sparse-keymap) "Keymap used in om mode.")
+(defconst om-insert-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map [remap next-line] 'om-next-position)
+    (define-key map [remap previous-line] (lambda () (interactive) (om-next-position 1)))
+    (define-key map (kbd "C-c C-c") 'om-exit-edit)
+    map)
+  "Keymap used in om mode.")
 
 (defcustom om-expand-abbrev "om"
   "This is the abbrev to expand an Om component."
@@ -106,12 +114,6 @@
  (defvar *om-markers* nil
    "Markers for locations saved in skeleton-positions."))
 
-(defun om-skeleton-end ()
-  "Called after skeleton insertion and takes over `C-n keybinding."
-  (om-make-markers)
-  (define-key om-mode-keymap [remap next-line] 'om-next-position)
-  (define-key om-mode-keymap [remap previous-line] (lambda () (interactive) (om-next-position 1))))
-
 (defun om-make-markers ()
   "Make markers in skeleton."
   (while *om-markers*
@@ -119,13 +121,10 @@
   (setq *om-markers*
 	(mapcar 'copy-marker (reverse skeleton-positions))))
 
-(add-hook 'skeleton-end-hook 'om-skeleton-end)
-
 (defun om-exit-edit ()
   "Reset the variable with Om markers, so that `next line' can be bound to default."
   (interactive)
-  (define-key om-mode-keymap [remap next-line] nil)
-  (define-key om-mode-keymap [remap previous-line] nil))
+  (om-insert-mode -1))
 
 (defun om-next-position (&optional reverse)
   "Jump to next position in skeleton.
@@ -161,15 +160,22 @@ REVERSE - Jump to previous position in skeleton"
   (om-install-abbrevs))
 
 ;;;###autoload
-(define-minor-mode om-mode
+(define-minor-mode om-insert-mode
   "Toggle om mode."
   :init-value nil
   ;; The indicator for the mode line.
-  :lighter " Om"
+  :lighter " OmInsert"
   ;; The minor mode bindings.
-  :keymap om-mode-keymap
+  :keymap om-mode-map
   :global nil
-  :group 'om-mode)
+  :group 'om-mode
+  (if om-insert-mode
+      (progn
+        (om-make-markers)
+        (message "Use C-n and C-p to move between Om fields, C-c C-c to finish."))
+    (message "Om insertion stopped.")))
+
+
 
 (provide 'om-mode)
 ;;; om-mode.el ends here

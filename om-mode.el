@@ -49,7 +49,7 @@
   > "\"Om component for new " str "\""
   \n > "[data owner]"
   \n > "(reify" \n
-  '(setq v1 (skeleton-read "Render with state (y/n)?"))
+  '(setq v1 (skeleton-read "Render with state (y/n)? "))
   (when (string= v1 "y")
     (progn (init-state) nil))
   '(indent-according-to-mode)

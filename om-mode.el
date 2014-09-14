@@ -111,14 +111,14 @@
   :type '(string))
 
 (make-variable-buffer-local
- (defvar *om-markers* nil
+ (defvar om-markers nil
    "Markers for locations saved in skeleton-positions."))
 
 (defun om-make-markers ()
   "Make markers in skeleton."
-  (while *om-markers*
-    (set-marker (pop *om-markers*) nil))
-  (setq *om-markers*
+  (while om-markers
+    (set-marker (pop om-markers) nil))
+  (setq om-markers
 	(mapcar 'copy-marker (reverse skeleton-positions))))
 
 (defun om-exit-edit ()
@@ -130,7 +130,7 @@
   "Jump to next position in skeleton.
 REVERSE - Jump to previous position in skeleton"
   (interactive "P")
-  (let* ((positions (mapcar 'marker-position *om-markers*))
+  (let* ((positions (mapcar 'marker-position om-markers))
 	 (positions (if reverse (reverse positions) positions))
 	(comp (if reverse '> '<))
 	pos)
@@ -141,7 +141,7 @@ REVERSE - Jump to previous position in skeleton"
 		(throw 'break t))))
 	  (goto-char pos)
 	(goto-char (marker-position
-		    (car *om-markers*)))))))
+		    (car om-markers)))))))
 
 ;; abbrev table for this mode
 ;;

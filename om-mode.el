@@ -121,7 +121,7 @@
 
 (add-hook 'skeleton-end-hook 'om-skeleton-end)
 
-(defun exit-om-edit ()
+(defun om-exit-edit ()
   "Reset the variable with Om markers, so that `next line' can be bound to default."
   (interactive)
   (define-key om-mode-keymap [remap next-line] nil)

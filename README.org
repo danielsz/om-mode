@@ -5,7 +5,7 @@ Om-mode is a minor mode that provides the following:
 - Insert a template for an Om component.
 - The template include all the Om life cycle protocols.
 - Jump back and forth between positions in the template.
-- User-configurable abbrev that will autoamatically expand the template.
+- User-configurable abbrev that will expand the template.
 
 ** Installation
 
@@ -42,7 +42,7 @@ In the meantime, if you want to load *om-mode* everytime you’re editing Clojur
 Invoke the template with *M-x insert-om-template*.
 Alternatively, type “om” and automatic expansion will occur. 
 For this to work, either turn on *abbrev-mode* in the buffer, or put *(setq-default abbrev-mode t)* in your init file.
-After template insertion, *next-line* and *previous-line* will jump to places of interest in the template. When you’ve finished editing the template, invoke *M-x exit-om-edit* to reclaim the usual bindings associated with *next-line* and *previous-line* (*C-n* and *C-p* typically).
+After template insertion, *next-line* and *previous-line* will jump to places of interest in the template. When you’ve finished editing the template, invoke *M-x exit-om-edit* to reclaim the usual bindings associated with *next-line* and *previous-line* (*C-n* and *C-p*, typically).
 
 Type *M-x customize-group RET om-mode* to change the abbreviation to expand the template. The default is “om”.
 

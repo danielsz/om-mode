@@ -27,6 +27,16 @@ Please make sure you have Marmalade or MELPA in your package archives.
 
 Just put *om-mode.el* anywhere on your load path (or load the file manually). *M-x om-mode* will toggle it on and off.
 
+*** Init file
+
+This minor mode makes sense only for Clojurescript, however there doesn’t seem to be a hook specific to Clojurescript. There is an open [[https://github.com/clojure-emacs/cider/issues/798][issue]] on Cider’s github on this.
+
+In the meantime, if you want to load *om-mode* everytime you’re editing Clojurescript, this is the best that comes to mind:
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'clojure-mode-hook 'om-mode)
+#+END_SRC
+
 ** Usage
 
 Invoke the template with *M-x insert-om-template*.
@@ -35,10 +45,6 @@ For this to work, either turn on *abbrev-mode* in the buffer, or put *(setq-defa
 After template insertion, *next-line* and *previous-line* will jump to places of interest in the template. When you’ve finished editing the template, invoke *M-x exit-om-edit* to reclaim the usual bindings associated with *next-line* and *previous-line* (*C-n* and *C-p* typically).
 
 Type *M-x customize-group RET om-mode* to change the abbreviation to expand the template. The default is “om”.
-
-** Limitations
-
-- This minor mode makes sense only for Clojurescript, however there doesn’t seem to be a hook specific to Clojurescript, so it uses the *clojure-mode-hook*. This is not ideal. There is an open [[https://github.com/clojure-emacs/cider/issues/798][issue]] on Cider’s github.
 
 ** Contributing
 

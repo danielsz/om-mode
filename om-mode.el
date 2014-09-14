@@ -6,7 +6,7 @@
 ;; Author: Daniel Szmulewicz <daniel.szmulewicz@gmail.com>
 ;; Keywords: clojurescript
 ;; Created: 14th September 2014
-;; Version: 0.1.20140914
+;; Version: 0.2.20140914
 
 ;;; Commentary:
 
@@ -39,6 +39,8 @@
 ;; Public License.
 
 ;;; Code:
+
+(require 'skeleton)
 
 (define-skeleton insert-om-template
   "Om component skeleton"
@@ -89,9 +91,6 @@
   > "(init-state [_] {" @ " }"
   \n ")" \n >)
 
-(defvar *skeleton-markers* nil
-         "Markers for locations saved in skeleton-positions.")
-
 (defgroup om-mode nil
   "Customization group for `om-mode'."
 	:group 'convenience)
@@ -103,20 +102,24 @@
   :group 'om-mode
   :type '(string))
 
-(add-hook 'skeleton-end-hook 'skeleton-end)
+(make-variable-buffer-local
+ (defvar *om-markers* nil
+   "Markers for locations saved in skeleton-positions."))
 
-(defun skeleton-end ()
+(defun om-skeleton-end ()
   "Called after skeleton insertion and takes over `C-n keybinding."
-  (skeleton-make-markers)
-  (define-key om-mode-keymap [remap next-line] 'skeleton-next-position)
-  (define-key om-mode-keymap [remap previous-line] (lambda () (interactive) (skeleton-next-position 1))))
+  (om-make-markers)
+  (define-key om-mode-keymap [remap next-line] 'om-next-position)
+  (define-key om-mode-keymap [remap previous-line] (lambda () (interactive) (om-next-position 1))))
 
-(defun skeleton-make-markers ()
+(defun om-make-markers ()
   "Make markers in skeleton."
-  (while *skeleton-markers*
-    (set-marker (pop *skeleton-markers*) nil))
-  (setq *skeleton-markers*
+  (while *om-markers*
+    (set-marker (pop *om-markers*) nil))
+  (setq *om-markers*
 	(mapcar 'copy-marker (reverse skeleton-positions))))
+
+(add-hook 'skeleton-end-hook 'om-skeleton-end)
 
 (defun exit-om-edit ()
   "Reset the variable with Om markers, so that `next line' can be bound to default."
@@ -124,11 +127,11 @@
   (define-key om-mode-keymap [remap next-line] nil)
   (define-key om-mode-keymap [remap previous-line] nil))
 
-(defun skeleton-next-position (&optional reverse)
+(defun om-next-position (&optional reverse)
   "Jump to next position in skeleton.
 REVERSE - Jump to previous position in skeleton"
   (interactive "P")
-  (let* ((positions (mapcar 'marker-position *skeleton-markers*))
+  (let* ((positions (mapcar 'marker-position *om-markers*))
 	 (positions (if reverse (reverse positions) positions))
 	(comp (if reverse '> '<))
 	pos)
@@ -139,7 +142,7 @@ REVERSE - Jump to previous position in skeleton"
 		(throw 'break t))))
 	  (goto-char pos)
 	(goto-char (marker-position
-		    (car *skeleton-markers*)))))))
+		    (car *om-markers*)))))))
 
 ;; abbrev table for this mode
 ;;
@@ -167,9 +170,6 @@ REVERSE - Jump to previous position in skeleton"
   :keymap om-mode-keymap
   :global nil
   :group 'om-mode)
-
-;;;###autoload
-(add-hook 'clojure-mode-hook 'om-mode)
 
 (provide 'om-mode)
 ;;; om-mode.el ends here

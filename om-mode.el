@@ -6,7 +6,7 @@
 ;; Author: Daniel Szmulewicz <daniel.szmulewicz@gmail.com>
 ;; Keywords: clojurescript
 ;; Created: 14th September 2014
-;; Version: 0.2.20140914
+;; Version: 0.3.20140914
 
 ;;; Commentary:
 
@@ -150,12 +150,12 @@ REVERSE - Jump to previous position in skeleton"
   "Install default abbrev table for clojure if none is available."
   (if (and (boundp 'clojure-mode-abbrev-table)
  	   (not (equal clojure-mode-abbrev-table (make-abbrev-table))))
-      (progn (define-abbrev clojure-mode-abbrev-table om-expand-abbrev "" 'insert-om-template)
-	     (setq save-abbrevs 'silently)
-	     (message "Clojure abbrevs already exists, om abbrev added to it"))
-    (define-abbrev-table 'clojure-mode-abbrev-table om-expand-abbrev "" 'insert-om-template)
-    (setq save-abbrevs nil)
-    (message "Clojure abbrevs loaded.")))
+      (let ((save-abbrevs 'silently))
+	(define-abbrev clojure-mode-abbrev-table om-expand-abbrev "" 'insert-om-template)
+	(message "Clojure abbrevs already exists, om abbrev added to it"))
+    (let ((save-abbrevs nil))
+      (define-abbrev-table 'clojure-mode-abbrev-table om-expand-abbrev "" 'insert-om-template)
+      (message "Clojure abbrevs loaded."))))
 
 (unless noninteractive
   (om-install-abbrevs))

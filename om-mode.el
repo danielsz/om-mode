@@ -6,7 +6,7 @@
 ;; Author: Daniel Szmulewicz <daniel.szmulewicz@gmail.com>
 ;; Keywords: clojurescript
 ;; Created: 14th September 2014
-;; Version: 0.5.20140914
+;; Version: 0.5.20140916
 
 ;;; Commentary:
 
@@ -61,7 +61,7 @@
   "om/IDidMount" \n
   > "(did-mount [_]" \n
   @ - ")" \n >
-  "om/IWillUnMount" \n
+  "om/IWillUnmount" \n
   > "(will-unmount [_]" \n
   @ - ")" \n >
   "om/IShouldUpdate" \n

@@ -3,7 +3,7 @@
 Om-mode is a minor mode that provides the following:
 
 - Insert a template for an Om component.
-- The template include all the Om life cycle protocols.
+- Includes all of the Om life cycle protocols.
 - Jump back and forth between positions in the template.
 - User-configurable abbrev that will expand the template.
 
